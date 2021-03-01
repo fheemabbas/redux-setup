@@ -11,9 +11,11 @@ import reducer from "./Components/Reducer/index";
 const store = createStore(reducer, applyMiddleware(thunk));
 
 ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
+  <BrowserRouter>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </BrowserRouter>,
   document.getElementById("root")
 );
 
