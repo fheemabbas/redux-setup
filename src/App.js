@@ -1,25 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from "react";
+import "./App.css";
+import { connect } from "react-redux";
+import { geData } from "./Components/Action/Main";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+function App(props) {
+  useEffect(() => {
+    props.geData();
+    // eslint-disable-next-line
+  }, []);
+  console.log("props :", props);
+  return <div className="App">hello World</div>;
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    data: state.latest.data,
+  };
+};
+export default connect(mapStateToProps, { geData })(App);
